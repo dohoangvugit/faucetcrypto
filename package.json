@@ -1,8 +1,15 @@
 {
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon --exec \"node --dns-result-order=ipv4first\" src/app.js",
+    "sass": "sass -w src/scss/app.scss src/public/css/app.css",
+    "format": "prettier --single-quote all --tab-width 4 --write 'src/**/*.{js,scss,json,hbs}'"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.98.0",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "express-handlebars": "^8.0.1",
     "nodemon": "^3.1.14",
     "sass": "^1.97.3"
   }
