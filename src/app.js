@@ -32,5 +32,5 @@ app.set('views', path.join(__dirname, 'views'))
 // route(app)
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Ứng dụng đang chạy ở http://localhost:${port}`)
 })
