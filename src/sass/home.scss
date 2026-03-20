@@ -1,0 +1,51 @@
+.stat-wrapper {
+  position: absolute;
+  top: 120px;
+  left: 60px;
+
+  display: flex;
+  gap: 30px; 
+}
+
+.stat-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stat-card {
+  width: 180px;
+  padding: 15px;
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.stat-card .title {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.stat-card .value {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.intro-card {
+  width: 260px;
+}
+
+.intro-list {
+  margin-top: 10px;
+  padding-left: 18px;
+}
+
+.intro-list li {
+  font-size: 14px;
+  margin-bottom: 6px;
+}

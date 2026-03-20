@@ -2,7 +2,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon --exec \"node --dns-result-order=ipv4first\" src/app.js",
-    "sass": "sass -w src/scss/app.scss src/public/css/app.css",
+    "sass": "sass --watch src/sass/app.scss src/public/css/app.css",
     "format": "prettier --single-quote all --tab-width 4 --write 'src/**/*.{js,scss,json,hbs}'"
   },
   "dependencies": {

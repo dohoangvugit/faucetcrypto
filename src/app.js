@@ -3,8 +3,7 @@ const app = express()
 const port = 3000
 const { engine } = require('express-handlebars')
 const path = require('path')
-// const db = require('../src/config/db')
-// const route = require('./routes')
+const route = require('./routes/index')
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
@@ -29,8 +28,10 @@ app.engine(
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'))
 
-// route(app)
+
+
+route(app)
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Example app listening on port http://localhost:${port}`)
 })

@@ -1,0 +1,42 @@
+// ===== VARIABLES =====
+$bg-dark: #0f172a;
+$overlay-1: rgba(15, 23, 42, 0.9);
+$overlay-2: rgba(30, 41, 59, 0.8);
+$overlay-3: rgba(59, 130, 246, 0.3);
+
+body {
+  min-height: 100vh;
+  background: $bg-dark;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.bg-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  background: url("/img/bg.png") center/cover no-repeat;
+
+  z-index: -1;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.9),
+      rgba(30, 41, 59, 0.8),
+      rgba(59, 130, 246, 0.3)
+    );
+  }
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+}
