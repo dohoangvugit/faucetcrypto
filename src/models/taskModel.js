@@ -11,7 +11,8 @@ const taskModel = {
                 title: task.title,
                 reward_amount: task.reward_amount,
                 cooldown_seconds: task.cooldown_seconds ?? 30,
-                is_active: task.is_active ?? true
+                is_active: task.is_active ?? true,
+                link_url: task.link_url
             },
         ])
         .select()
@@ -40,12 +41,14 @@ const taskModel = {
         }
 
     }
+
+
 }
 
 module.exports = taskModel
 
 // test 
 
-// taskModel.create({ title: 'Test Task3', reward_amount: 0.01 })
+// taskModel.create({ title: 'Test Task3', reward_amount: 0.01, link_url: 'https://earnbitmoon.club' })
 // taskModel.delete(4)
 
