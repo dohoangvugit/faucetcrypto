@@ -16,11 +16,36 @@ const taskModel = {
         ])
         .select()
 
-    if (error) throw error
+        if (error) {
+            console.error('Thêm thất bại', error.message);
+        } else {
+            console.log('Thêm thành công');
+        }
 
-    return data
+        return data
 
     },
+
+    delete: async (id) =>{
+        
+    const { error } = await supabase
+        .from('tasks')
+        .delete()
+        .eq('id', id)
+
+        if (error) {
+            console.error('Xóa thất bại', error.message);
+        } else {
+            console.log('Xóa thành công');
+        }
+
+    }
 }
 
 module.exports = taskModel
+
+// test 
+
+// taskModel.create({ title: 'Test Task3', reward_amount: 0.01 })
+// taskModel.delete(4)
+
