@@ -40,6 +40,36 @@ const taskModel = {
             console.log('Xóa thành công');
         }
 
+    },
+
+    getTasks: async() =>{
+        
+        let { data: tasks, error } = await supabase
+            .from('tasks')
+            .select('*')
+        
+        if (error) {
+            console.error('không lấy được data', error.message);
+        } else {
+            console.log('lấy thành công', tasks);
+            return tasks
+        }
+    },
+
+    update: async (id, updates) =>{
+        
+        const { data, error } = await supabase
+            .from('tasks')
+            .update(updates)
+            .eq('id', id)
+            .select()
+
+        if (error) {
+            console.error('sửa thất bại', error.message);
+        } else {
+            console.log('sửa thành công', data);
+            return data
+        }
     }
 
 
@@ -51,4 +81,5 @@ module.exports = taskModel
 
 // taskModel.create({ title: 'Test Task3', reward_amount: 0.01, link_url: 'https://earnbitmoon.club' })
 // taskModel.delete(4)
-
+// taskModel.getTasks()
+//  taskModel.update('8', {title:'test tast'})
