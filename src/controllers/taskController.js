@@ -57,7 +57,7 @@ const TaskController = {
             const updates = req.body;
             const updatedTask = await taskModel.update(id, updates)
 
-            if (!updatedTask){
+            if (!updatedTask || updatedTask.length === 0){
                 return res.status(400).json({message: 'task không tồn tại'})
             }
             res.status(200).json(updatedTask);
