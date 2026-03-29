@@ -1,90 +1,13 @@
-<section class="auth-container d-flex align-items-center justify-content-center">
+<div class="auth-container d-flex align-items-center justify-content-center">
   <div class="card auth-card shadow-lg">
     <div class="card-body p-5">
       {{#if isLogin}}
-        <h3 class="text-center mb-4 text-white">Chào mừng trở lại!</h3>
-        <form action="/auth/login" method="POST">
-          <div class="mb-3">
-            <label class="form-label text-light">Email của bạn</label>
-            <input type="email" name="email" class="form-control custom-input" placeholder="name@example.com" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label text-light">Mật khẩu</label>
-            <input type="password" name="password" class="form-control custom-input" placeholder="••••••••" required>
-          </div>
-          <div class="d-grid gap-2 mt-4">
-            <button type="submit" class="btn btn-primary btn-auth">Đăng Nhập</button>
-          </div>
-        </form>
-        <p class="text-center mt-3 text-light">Chưa có tài khoản? <a href="/register" class="text-info">Đăng ký ngay</a></p>
-      
+        <h3 class="text-center mb-4 text-white">Login</h3>
+        {{> authForm}}
       {{else}}
-        <h3 class="text-center mb-4 text-white">Tạo tài khoản Matic</h3>
-        <form action="/auth/register" method="POST">
-          <div class="mb-3">
-            <label class="form-label text-light">Tên người dùng</label>
-            <input type="text" name="username" class="form-control custom-input" placeholder="matic_king" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label text-light">Email</label>
-            <input type="email" name="email" class="form-control custom-input" placeholder="name@example.com" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label text-light">Mật khẩu</label>
-            <input type="password" name="password" class="form-control custom-input" required>
-          </div>
-          <div class="d-grid gap-2 mt-4">
-            <button type="submit" class="btn btn-primary btn-auth">Bắt đầu kiếm Matic</button>
-          </div>
-        </form>
-        <p class="text-center mt-3 text-light">Đã có tài khoản? <a href="/login" class="text-info">Đăng nhập</a></p>
+        <h3 class="text-center mb-4 text-white">Register</h3>
+        {{> authForm}}
       {{/if}}
     </div>
   </div>
-</section>
-
-<style>
-    /* Nền bao phủ toàn trang */
-.auth-container {
-    min-height: 100vh;
-    background: #0f0c29; /* Màu tối sâu */
-    background: linear-gradient(to right, #0f0c29, #302b63, #24243e); 
-}
-
-/* Card hiệu ứng kính */
-.auth-card {
-    width: 100%;
-    max-width: 450px;
-    background: rgba(255, 255, 255, 0.05); /* Trong suốt */
-    backdrop-filter: blur(10px); /* Làm mờ nền phía sau */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-}
-
-/* Tùy chỉnh Input */
-.custom-input {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white !important;
-}
-
-.custom-input:focus {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: #8a2be2; /* Màu tím Matic */
-    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
-}
-
-/* Nút bấm */
-.btn-auth {
-    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-    border: none;
-    font-weight: bold;
-    padding: 12px;
-    transition: 0.3s;
-}
-
-.btn-auth:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
-}
-</style>
+</div>
