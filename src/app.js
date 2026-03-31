@@ -28,7 +28,13 @@ app.engine(
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'))
 
+// app.get('/login', (req, res) => {
+//     res.render('auth',{ isLogin: true});
+// });
 
+// app.get('/register', (req, res) => {
+//     res.render('auth',{ isLogin: false});
+// });
 
 route(app)
 
