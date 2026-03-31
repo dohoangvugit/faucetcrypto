@@ -1,8 +1,7 @@
-class HomeController {
+const HomeController = {
     index (req, res){
         res.render('home')
     }
-    
 }
 
-module.exports = new HomeController();
+module.exports = HomeController
