@@ -15,7 +15,7 @@ const authModel = {
         })
 
         if (error) {
-            console.error('Đăng ký thất bại:', error.message)
+            // console.error('Đăng ký thất bại:', error.message)
             return { error: error.message }
         }
 
@@ -25,17 +25,16 @@ const authModel = {
                 {
                     username,
                     email,
-                    // password,
                     created_at: new Date()
                 }
             ])
 
         if (insertError) {
-            console.error('Lỗi insert user:', insertError.message)
+            // console.error('Lỗi insert user:', insertError.message)
             return { error: insertError.message }
         }
 
-        console.log('Đăng ký thành công:', data)
+        // console.log('Đăng ký thành công:', data)
         return {
             success: true,
             user: data.user,
@@ -50,14 +49,14 @@ const authModel = {
         })
 
         if (error) {
-            console.error('Đăng nhập thất bại:', error.message)
-            console.error('Mã lỗi', error.status)
+            // console.error('Đăng nhập thất bại:', error.message)
+            // console.error('Mã lỗi', error.status)
             return { success: false, error: error.message }
         }
 
         const user = data.user
         if (!user.confirmed_at) {
-            console.error('Mail chưa xác thực');
+            // console.error('Mail chưa xác thực')
             return { success: false, error: error.message }
         }
         
@@ -71,7 +70,7 @@ const authModel = {
         }
 
         const role = users.role || 'client'
-        console.log('Đăng nhập thành công', data)
+        // console.log('Đăng nhập thành công', data)
         // console.log(role)
         return { success: true, user: data.user, role }   
     },
@@ -79,10 +78,10 @@ const authModel = {
     logout: async ()=>{
         const { error } = await supabase.auth.signOut()
         if (error){
-            console.error('đăng xuất thất bại', error.message )
+            // console.error('đăng xuất thất bại', error.message )
             return { success: false, error: error.message }
         }
-        console.log('Đăng xuất thành công')
+        // console.log('Đăng xuất thành công')
         return{success: true}
     }
 

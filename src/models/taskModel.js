@@ -18,9 +18,9 @@ const taskModel = {
         .select()
 
         if (error) {
-            console.error('Thêm thất bại', error.message);
+            // console.error('Thêm thất bại', error.message)
         } else {
-            console.log('Thêm thành công');
+            // console.log('Thêm thành công')
         }
 
         return data
@@ -35,9 +35,9 @@ const taskModel = {
         .eq('id', id)
 
         if (error) {
-            console.error('Xóa thất bại', error.message);
+            // console.error('Xóa thất bại', error.message);
         } else {
-            console.log('Xóa thành công');
+            // console.log('Xóa thành công');
         }
 
     },
@@ -49,9 +49,9 @@ const taskModel = {
             .select('*')
         
         if (error) {
-            console.error('không lấy được data', error.message);
+            // console.error('không lấy được data', error.message);
         } else {
-            console.log('lấy thành công', tasks);
+            // console.log('lấy thành công', tasks);
             return tasks
         }
     },
@@ -65,9 +65,9 @@ const taskModel = {
             .select()
 
         if (error) {
-            console.error('sửa thất bại', error.message);
+            // console.error('sửa thất bại', error.message);
         } else {
-            console.log('sửa thành công', data);
+            // console.log('sửa thành công', data);
             return data
         }
     }
