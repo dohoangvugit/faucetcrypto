@@ -55,14 +55,25 @@ const authModel = {
             return { success: false, error: error.message }
         }
 
-        const user = data.user;
-        if (!user?.raw_user_meta_data?.email_verified) {
+        const user = data.user
+        if (!user.confirmed_at) {
             console.error('Mail chưa xác thực');
-            return { success: false, err: { message: 'Email chưa xác thực' }, code: 401 };
-        }        
+            return { success: false, error: error.message }
+        }
+        
+        let { data: users, error: errRole } = await supabase
+            .from('users')
+            .select('role')
+            .eq('email', email)
+        
+        if(errRole){
+            return {success: false, error: errRole }
+        }
 
+        const role = users.role || 'client'
         console.log('Đăng nhập thành công', data)
-        return { success: true, user: data.user }   
+        // console.log(role)
+        return { success: true, user: data.user, role }   
     },
 
     logout: async ()=>{

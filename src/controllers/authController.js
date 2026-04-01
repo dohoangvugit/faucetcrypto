@@ -8,27 +8,30 @@ const Authcontroller = {
     async loginSubmit (req, res) {
         try {
             const { email, password } = req.body
-            const { success, user, err } = await authModel.login(email, password)
-            const isVerified = user?.raw_user_meta_data?.email_verified ?? false
-
+            const { success, user, error, role } = await authModel.login(email, password)
+            const isVerified = user.confirmed_at
+            
+            if (error) {
+                return res.status(400).json({
+                    message: 'Đăng nhập thất bại',
+                    erroror: error.message
+                })
+            } 
+            
             if (!isVerified) {
                 return res.status(401).json({
                     message: 'Email chưa xác thực'
                 })
-            }           
-            if (err) {
-                return res.status(400).json({
-                    message: 'Đăng nhập thất bại',
-                    error: err?.message
-                })
-            }                    
+            }                              
 
             if (success) {
-                return res.status(200).json({
-                    message: 'Đăng nhập thành công',
-                    user
-                })
+                if(role === 'client'){
+                    return res.status(200).render('client/tasks',{layout: 'client', user})
+                }
+
+                return res.status(200).render('admin/task', {layout: 'admin', user})
             }
+
         } catch (err) {
             console.error(err.message)
             return res.status(500).json({
