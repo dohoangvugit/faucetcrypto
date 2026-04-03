@@ -1,107 +1,108 @@
 const authModel = require('../models/authModel')
 
 const Authcontroller = {
-    login (req, res){
+    login(req, res) {
         res.render('auth', { isLogin: true })
     },
 
-    async loginSubmit (req, res) {
+    async loginSubmit(req, res) {
         try {
             const { email, password } = req.body
-            const { success, user, error, role } = await authModel.login(email, password)
-            const isVerified = user.confirmed_at
-            
-            if (error) {
-                return res.status(400).json({
-                    message: 'Đăng nhập thất bại',
-                    erroror: error.message
-                })
-            } 
-            
-            if (!isVerified) {
-                return res.status(401).json({
-                    message: 'Email chưa xác thực'
-                })
-            }                              
+            const { success, userFull, error } = await authModel.login(email, password)
 
-            if (success) {
-                if(role === 'client'){
-                    return res.status(200).render('client/tasks',{layout: 'client', user})
+            console.log('LOGIN RESULT:', { success, userFull, error })
+
+            if (error) {
+                if (error === 'mail chua xac thuc') {
+                    return res.status(401).json({
+                        message: 'Email chua xac thuc',
+                    })
                 }
 
-                return res.status(200).render('admin/task', {layout: 'admin', user})
+                return res.status(400).json({
+                    message: 'Dang nhap that bai: sai email hoac mat khau',
+                    error,
+                })
             }
 
+            if (success) {
+                req.session.user = userFull
+                console.log('User session:', req.session.user)
+
+                return req.session.save(() => {
+                    if (userFull.role === 'client') {
+                        return res.redirect('/client/tasks')
+                    }
+
+                    return res.redirect('/admin/task')
+                })
+            }
         } catch (err) {
             console.error(err.message)
             return res.status(500).json({
-                message: 'Có lỗi xảy ra',
-                error: err.message
+                message: 'Co loi xay ra',
+                error: err.message,
             })
         }
     },
 
-    register (req, res){
+    register(req, res) {
         res.render('auth', { isLogin: false })
     },
 
-    async registerSubmit(req, res){
+    async registerSubmit(req, res) {
         try {
             const { email, password, username } = req.body
             const { success, user, err } = await authModel.register(email, username, password)
 
             if (err) {
                 return res.status(400).json({
-                    message: 'Đăng ký thất bại',
-                    error: err.message
+                    message: 'Dang ky that bai',
+                    error: err,
                 })
             }
 
             if (success) {
                 return res.status(200).json({
-                    message: 'Đăng ký thành công. Vui lòng kiểm tra email để xác nhận.',
-                    user
+                    message: 'Dang ky thanh cong. Vui long kiem tra email de xac nhan.',
+                    user,
                 })
             }
 
             return res.status(400).json({
-                message: 'Đăng ký thất bại. Vui lòng thử lại.'
+                message: 'Dang ky that bai. Vui long thu lai.',
             })
-
         } catch (err) {
             console.error(err.message)
             return res.status(500).json({
-                message: 'Có lỗi xảy ra',
-                error: err.message
+                message: 'Co loi xay ra',
+                error: err.message,
             })
         }
     },
 
-    async logout(req, res){
+    async logout(req, res) {
         try {
             const { success, err } = await authModel.logout()
 
             if (err) {
                 return res.status(400).json({
-                    message: 'Đăng xuất thất bại',
-                    error: err.message
+                    message: 'Dang xuat that bai',
+                    error: err,
                 })
             }
 
             if (success) {
-                return res.status(200).json({
-                    message: 'Đăng xuất thành công'
-                })
+                return res.status(200).render('home')
             }
-
         } catch (err) {
-            console.error('lỗi đăng xuất', err)
+            console.error('loi dang xuat', err)
             return res.status(500).json({
-                message: 'Lỗi đăng xuất',
-                error: err.message
+                message: 'Loi dang xuat',
+                error: err.message,
             })
         }
-    }
+    },
 }
 
 module.exports = Authcontroller
