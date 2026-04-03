@@ -11,6 +11,7 @@ const taskModel = {
                 title: task.title,
                 reward_amount: task.reward_amount,
                 cooldown_seconds: task.cooldown_seconds ?? 30,
+                description: task.description ?? '',
                 is_active: task.is_active ?? true,
                 link_url: task.link_url
             },
