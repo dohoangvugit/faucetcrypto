@@ -1,13 +1,31 @@
+require('dotenv').config()
+
 const express = require('express')
+const session = require('express-session')
 const app = express()
 const port = 3000
 const { engine } = require('express-handlebars')
 const path = require('path')
 const route = require('./routes/index')
 
+
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
+
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'fallback_secret_key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        path: '/',
+        httpOnly: true,
+        secure: false,
+        maxAge: 1000 * 60 * 60 * 24,
+    }
+}))
+// const route = require('./routes/index')
+// console.log('SESSION_SECRET:', process.env.SESSION_SECRET)
 
 app.engine(
     '.hbs',
@@ -27,14 +45,6 @@ app.engine(
 )
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'))
-
-// app.get('/login', (req, res) => {
-//     res.render('auth',{ isLogin: true});
-// });
-
-// app.get('/register', (req, res) => {
-//     res.render('auth',{ isLogin: false});
-// });
 
 route(app)
 
