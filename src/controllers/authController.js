@@ -27,7 +27,7 @@ const Authcontroller = {
 
             if (success) {
                 req.session.user = userFull
-                console.log('User session:', req.session.user)
+                // console.log('User session:', req.session.user)
 
                 return req.session.save(() => {
                     if (userFull.role === 'client') {
