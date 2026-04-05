@@ -1,3 +1,4 @@
+require('dotenv').config()
 const taskModel = require('../models/taskModel')
 
 const tasksClientController = {
@@ -7,7 +8,9 @@ const tasksClientController = {
             res.render('client/tasks', {
                 layout: 'client',
                 user: req.session.user,
-                tasks
+                tasks,
+                supabaseUrl: process.env.SUPABASE_URL,
+                supabaseKey: process.env.SUPABASE_ANON_KEY
             })
         } catch (err) {
             console.error('Lỗi lấy tasks cho client', err)
