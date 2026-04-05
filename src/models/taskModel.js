@@ -19,6 +19,7 @@ const taskModel = {
         .select()
 
         if (error) {
+            throw error
             // console.error('Thêm thất bại', error.message)
         } else {
             // console.log('Thêm thành công')
@@ -36,6 +37,7 @@ const taskModel = {
         .eq('id', id)
 
         if (error) {
+            throw error
             // console.error('Xóa thất bại', error.message);
         } else {
             // console.log('Xóa thành công');
@@ -50,6 +52,7 @@ const taskModel = {
             .select('*')
         
         if (error) {
+            throw error
             // console.error('không lấy được data', error.message);
         } else {
             // console.log('lấy thành công', tasks);
@@ -66,6 +69,7 @@ const taskModel = {
             .select()
 
         if (error) {
+            throw error
             // console.error('sửa thất bại', error.message);
         } else {
             // console.log('sửa thành công', data);
@@ -78,9 +82,4 @@ const taskModel = {
 
 module.exports = taskModel
 
-// test 
 
-// taskModel.create({ title: 'Test Task3', reward_amount: 0.01, link_url: 'https://earnbitmoon.club' })
-// taskModel.delete(4)
-// taskModel.getTasks()
-//  taskModel.update('8', {title:'test tast'})
