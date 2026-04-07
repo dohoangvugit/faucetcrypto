@@ -16,7 +16,7 @@
               <div class="align-items-center">
                 <div class="col-12">
                   Balance
-                  <div class="fw-bold">{{user.balance}}</div>
+                  <div class="fw-bold" id="balance">{{user.balance}}</div>
                 </div>
               </div>
             </div>
@@ -52,15 +52,17 @@
               <span> <i class="bi bi-alarm-fill"></i> {{cooldown_seconds}}s</span>
             </div>
 
-            <a href="{{link_url}}" class="btn btn-success btn-sm w-100 mt-1">
-              🔗 Visit
-            </a>
-
+            <button
+              class="btn btn-success btn-sm w-100 mt-1 visit-btn"
+              data-task-id="{{id}}"
+              data-link-url="{{link_url}}"
+              data-cooldown="{{cooldown_seconds}}">
+              Visit
+            </button>
           </div>            
         </div>
         {{/each}}
       </div>
     </div>
-
   </div>
 </div>
