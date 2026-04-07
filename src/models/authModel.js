@@ -20,6 +20,7 @@ const authModel = {
             .from('users')
             .insert([
                 {
+                    auth_user_id: data.user.id,
                     username,
                     email,
                     created_at: new Date(),
@@ -55,7 +56,7 @@ const authModel = {
 
         const { data: users, error: errRole } = await supabase
             .from('users')
-            .select('role,username,balance')
+            .select('role,username,balance,auth_user_id')
             .eq('email', email)
             .single()
 
