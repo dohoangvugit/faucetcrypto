@@ -53,12 +53,12 @@ const Authcontroller = {
     async registerSubmit(req, res) {
         try {
             const { email, password, username } = req.body
-            const { success, user, err } = await authModel.register(email, username, password)
+            const { success, user, error } = await authModel.register(email, username, password)
 
-            if (err) {
+            if (error) {
                 return res.status(400).json({
                     message: 'Dang ky that bai',
-                    error: err,
+                    error,
                 })
             }
 
@@ -83,18 +83,23 @@ const Authcontroller = {
 
     async logout(req, res) {
         try {
-            const { success, err } = await authModel.logout()
+            console.log('[logout] start')
+            await authModel.logout()
 
-            if (err) {
-                return res.status(400).json({
-                    message: 'Dang xuat that bai',
-                    error: err,
-                })
-            }
+            req.session.destroy((err) => {
+                if (err) {
+                    console.error('loi dang xuat', err)
+                    return res.status(500).json({
+                        message: 'Loi dang xuat',
+                        error: err.message,
+                    })
+                }
 
-            if (success) {
-                return res.status(200).render('home')
-            }
+                console.log('[logout] session destroyed')
+                res.clearCookie('connect.sid')
+                console.log('[logout] redirect to /')
+                return res.redirect('/')
+            })
         } catch (err) {
             console.error('loi dang xuat', err)
             return res.status(500).json({
