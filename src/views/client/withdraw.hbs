@@ -1,0 +1,99 @@
+<div class="withdraw-container">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="withdraw-card shadow-lg">
+          <div class="withdraw-header">
+            <h2 class="text-center mb-0">
+              <i class="bi bi-wallet2"></i> Rút Tiền
+            </h2>
+          </div>
+
+          <div class="withdraw-body p-4">
+            <!-- Balance Information -->
+            <div class="balance-info mb-4">
+              <div class="info-label">Số dư hiện tại</div>
+              <div class="balance-amount" id="currentBalance">
+                {{user.balance}} MATIC
+              </div>
+            </div>
+
+            <form id="withdrawForm" class="withdraw-form">
+              <!-- Wallet Address -->
+              <div class="mb-4">
+                <label for="walletAddress" class="form-label">
+                  <i class="bi bi-wallet"></i> Địa chỉ ví
+                </label>
+                <input
+                  type="text"
+                  class="form-control withdraw-input"
+                  id="walletAddress"
+                  name="walletAddress"
+                  required
+                  pattern="^0x[a-fA-F0-9]{40}$"
+                  title="Nhập địa chỉ ví Ethereum hợp lệ"
+                />
+                <small class="form-text mt-2 text-white">
+                  Địa chỉ ví của bạn
+                </small>
+              </div>
+
+              <!-- Amount -->
+              <div class="mb-4">
+                <label for="amount" class="form-label">
+                  <i class="bi bi-cash-coin"></i> Số tiền
+                </label>
+                <div class="input-group">
+                  <input
+                    type="number"
+                    class="form-control withdraw-input"
+                    id="amount"
+                    name="amount"
+                    min="0.01"
+                    step="0.01"
+                    required
+                  />
+                  <span class="input-group-text withdraw-addon">MATIC</span>
+                </div>
+                <small class="form-text mt-2 text-white">
+                  Số tiền tối thiểu: 0.01 MATIC
+                </small>
+              </div>
+
+              <div class="d-grid gap-2 d-sm-flex justify-content-center">
+                <button
+                  type="submit"
+                  class="btn btn-withdraw btn-lg"
+                  id="submitBtn"
+                >
+                  <i class="bi bi-check-circle"></i> Xác nhận rút tiền
+                </button>
+                <a href="/client/tasks" class="btn btn-secondary btn-lg">
+                  <i class="bi bi-arrow-left"></i> Quay lại
+                </a>
+              </div>
+
+              <div id="statusMessage" class="alert alert-info d-none mt-3" role="alert">
+                <span id="statusText"></span>
+              </div>
+            </form>
+          </div>
+
+          <!-- Additional Info -->
+          <div class="withdraw-footer p-4">
+            <div class="info-box">
+              <h6 class="mb-3">
+                <i class="bi bi-info-circle"></i> Lưu ý quan trọng
+              </h6>
+              <ul class="info-list">
+                <li>Kiểm tra kỹ địa chỉ ví trước khi rút tiền</li>
+                <li>Không thể hủy giao dịch sau khi xác nhận</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

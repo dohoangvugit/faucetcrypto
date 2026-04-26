@@ -1,0 +1,322 @@
+// Withdrawal Form Styles
+
+.withdraw-container {
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+.withdraw-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+  }
+}
+
+.withdraw-header {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px 20px;
+
+  h2 {
+    color: #fff;
+    font-weight: 600;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    i {
+      font-size: 32px;
+      color: #60a5fa;
+    }
+  }
+}
+
+.withdraw-body {
+  color: #fff;
+}
+
+.balance-info {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+
+  .info-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .balance-amount {
+    font-size: 28px;
+    font-weight: 700;
+    color: #60a5fa;
+  }
+}
+
+.withdraw-form {
+  .form-label {
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    i {
+      color: #60a5fa;
+      font-size: 16px;
+    }
+  }
+
+  .form-check-label {
+    color: rgba(255, 255, 255, 0.8);
+    margin-left: 8px;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.withdraw-input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff !important;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+
+  &:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #60a5fa;
+    color: #fff !important;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  &:invalid {
+    border-color: #ef4444;
+  }
+}
+
+.form-control.is-invalid {
+  border-color: #ef4444 !important;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+  }
+}
+
+.withdraw-addon {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+.input-group .withdraw-input {
+  &:focus {
+    & ~ .withdraw-addon {
+      border-color: #60a5fa;
+      background: rgba(96, 165, 250, 0.08);
+      color: #60a5fa;
+    }
+  }
+}
+
+.fee-info {
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+
+  .fee-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.total {
+      color: #60a5fa;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 12px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 8px;
+    }
+  }
+}
+
+.form-check-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+
+  &:checked {
+    background: #60a5fa;
+    border-color: #60a5fa;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+  }
+}
+
+.btn-withdraw {
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  i {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    color: #fff;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.withdraw-footer {
+  background: rgba(15, 23, 42, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  .info-box {
+    background: rgba(59, 130, 246, 0.08);
+    border-left: 3px solid #60a5fa;
+    border-radius: 8px;
+    padding: 16px;
+
+    h6 {
+      color: #60a5fa;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      i {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+
+    li {
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+
+      &::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #60a5fa;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// Alert Styles
+.alert {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-radius: 8px;
+
+  &.alert-info {
+    border-color: rgba(59, 130, 246, 0.3);
+    background: rgba(59, 130, 246, 0.1);
+  }
+
+  &.alert-success {
+    border-color: rgba(34, 197, 94, 0.3);
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+  }
+
+  &.alert-danger {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+  }
+}
+
+// Responsive
+@media (max-width: 576px) {
+  .withdraw-header h2 {
+    font-size: 22px;
+
+    i {
+      font-size: 24px;
+    }
+  }
+
+  .balance-amount {
+    font-size: 24px;
+  }
+
+  .btn-withdraw,
+  .btn-secondary {
+    font-size: 14px;
+    padding: 12px 24px;
+  }
+
+  .d-grid.gap-2.d-sm-flex {
+    flex-direction: column;
+
+    .btn {
+      margin-bottom: 8px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
