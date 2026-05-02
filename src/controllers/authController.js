@@ -26,7 +26,14 @@ const Authcontroller = {
             }
 
             if (success) {
-                req.session.user = userFull
+                req.session.user = {
+                    id: userFull.id,
+                    email: userFull.email,
+                    username: userFull.username,
+                    role: userFull.role,
+                    balance: userFull.balance,
+                    auth_user_id: userFull.auth_user_id
+                }
                 // console.log('User session:', req.session.user)
 
                 return req.session.save(() => {
