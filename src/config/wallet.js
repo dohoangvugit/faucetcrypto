@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const { ethers } = require ('ethers')
-const provider = require('./ether')
+const provider = require('./provider')
 
 const wallet = new ethers.Wallet(process.env.KEY, provider)
 
