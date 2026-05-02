@@ -1,14 +1,14 @@
 const supabase = require('../config/db')
 
 const authModel = {
-    register: async (email, username, password) => {
-        const normalizedEmail = email.trim().toLowerCase()
-        const normalizedUsername = username.trim()
+    register: async (emailUser, usernamUser, password) => {
+        const email = emailUser.trim().toLowerCase()
+        const username = usernamUser.trim()
 
         const { data: existingUser, error: existingUserError } = await supabase
             .from('users')
             .select('id')
-            .eq('email', normalizedEmail)
+            .eq('email', email)
             .maybeSingle()
 
         if (existingUserError) {
@@ -20,11 +20,11 @@ const authModel = {
         }
 
         const { data, error } = await supabase.auth.signUp({
-            email: normalizedEmail,
+            email: email,
             password,
             options: {
                 data: {
-                    username: normalizedUsername,
+                    username
                 },
             },
         })
@@ -40,9 +40,8 @@ const authModel = {
         const { error: insertError } = await supabase.from('users').insert([
             {
                 auth_user_id: data.user.id,
-                username: normalizedUsername,
-                email: normalizedEmail,
-                created_at: new Date(),
+                username,
+                email
             },
         ])
 
@@ -61,11 +60,11 @@ const authModel = {
         }
     },
 
-    login: async (email, password) => {
-        const normalizedEmail = email.trim().toLowerCase()
+    login: async (emailUser, password) => {
+        const email = emailUser.trim().toLowerCase()
 
         const { data, error } = await supabase.auth.signInWithPassword({
-            email: normalizedEmail,
+            email,
             password,
         })
 
@@ -81,8 +80,8 @@ const authModel = {
 
         const { data: users, error: errRole } = await supabase
             .from('users')
-            .select('role,username,balance,auth_user_id')
-            .eq('email', normalizedEmail)
+            .select('*')
+            .eq('email', email)
             .single()
 
         if (errRole) {
