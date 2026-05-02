@@ -10,7 +10,6 @@
           </div>
 
           <div class="withdraw-body p-4">
-            <!-- Balance Information -->
             <div class="balance-info mb-4">
               <div class="info-label">Số dư hiện tại</div>
               <div class="balance-amount" id="currentBalance">
@@ -18,8 +17,7 @@
               </div>
             </div>
 
-            <form id="withdrawForm" class="withdraw-form">
-              <!-- Wallet Address -->
+            <form id="withdrawForm" class="withdraw-form" method="POST" action="/withdraw">
               <div class="mb-4">
                 <label for="walletAddress" class="form-label">
                   <i class="bi bi-wallet"></i> Địa chỉ ví
@@ -28,7 +26,7 @@
                   type="text"
                   class="form-control withdraw-input"
                   id="walletAddress"
-                  name="walletAddress"
+                  name="wallet"
                   required
                   pattern="^0x[a-fA-F0-9]{40}$"
                   title="Nhập địa chỉ ví Ethereum hợp lệ"
@@ -38,7 +36,6 @@
                 </small>
               </div>
 
-              <!-- Amount -->
               <div class="mb-4">
                 <label for="amount" class="form-label">
                   <i class="bi bi-cash-coin"></i> Số tiền
@@ -49,14 +46,14 @@
                     class="form-control withdraw-input"
                     id="amount"
                     name="amount"
-                    min="0.01"
-                    step="0.01"
+                    min="0.001"
+                    step="0.001"
                     required
                   />
                   <span class="input-group-text withdraw-addon">MATIC</span>
                 </div>
                 <small class="form-text mt-2 text-white">
-                  Số tiền tối thiểu: 0.01 MATIC
+                  Số tiền tối thiểu: 0.001 MATIC
                 </small>
               </div>
 
@@ -78,8 +75,6 @@
               </div>
             </form>
           </div>
-
-          <!-- Additional Info -->
           <div class="withdraw-footer p-4">
             <div class="info-box">
               <h6 class="mb-3">
