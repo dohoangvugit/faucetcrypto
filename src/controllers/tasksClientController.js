@@ -1,10 +1,10 @@
 require('dotenv').config()
-const taskModel = require('../models/taskModel')
+const {getTasks} = require('../models/taskModel')
 
 const tasksClientController = {
     listClientTasks: async (req, res) => {
         try {
-            const tasks = await taskModel.getTasks()
+            const tasks = await getTasks()
             res.render('client/tasks', {
                 layout: 'client',
                 user: req.session.user,
