@@ -75,8 +75,22 @@ const taskModel = {
             // console.log('sửa thành công', data);
             return data
         }
-    }
+    },
 
+    getTasksById: async (id) => {
+        const { data, error } = await supabase
+            .from('tasks')
+            .select('*')
+            .eq('id', id)
+            .single()
+
+        if (error) {
+            console.error('Lỗi lấy task theo id', error.message)
+            return error
+        }
+
+        return data
+    }
 
 }
 
